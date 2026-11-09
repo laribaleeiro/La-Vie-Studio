@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro | La Vie Studio</title>
+  <meta name="description" content="Crie sua conta no La Vie Studio e agende seus horários online.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="cadastro">
+
+  <header id="site-header"></header>
+
+  <main class="pagina-auth">
+    <div class="container">
+      <div class="auth-wrap revelar">
+
+        <aside class="auth-painel">
+          <div>
+            <span class="logo"><span class="logo-lavie">La Vie</span><span class="logo-studio">Studio</span></span>
+          </div>
+          <div>
+            <h2>Seja bem-vinda</h2>
+            <p>Crie sua conta para agendar seus cuidados com praticidade e acompanhar todos os seus horários em um só lugar.</p>
+          </div>
+          <ul class="auth-beneficios">
+            <li data-icone="calendario">Agendamento online 24 horas</li>
+            <li data-icone="check">Confirmação imediata do horário</li>
+            <li data-icone="coracao">Histórico dos seus atendimentos</li>
+          </ul>
+        </aside>
+
+        <section class="auth-form">
+          <h1>Criar conta</h1>
+          <p class="subtitulo">Preencha seus dados para fazer parte do La Vie Studio.</p>
+
+          <div id="alerta" class="alerta" hidden role="alert"></div>
+
+          <form id="form-cadastro" novalidate>
+            <div class="campo">
+              <label for="nome">Nome completo</label>
+              <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Ex.: Maria Fernanda Silva" required>
+              <span class="msg-erro"></span>
+            </div>
+
+            <div class="campos-duplos">
+              <div class="campo">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="seuemail@exemplo.com" required>
+                <span class="msg-erro"></span>
+              </div>
+              <div class="campo">
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="numeric" placeholder="(11) 90000-0000" required>
+                <span class="msg-erro"></span>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="senha">Senha</label>
+              <div class="campo-senha">
+                <input type="password" id="senha" name="senha" autocomplete="new-password" placeholder="Mínimo de 6 caracteres" required>
+                <button type="button" class="ver-senha" aria-label="Mostrar senha"></button>
+              </div>
+              <div class="forca-senha" id="forca-senha" data-nivel="0" aria-hidden="true"><span></span><span></span><span></span></div>
+              <span class="msg-erro"></span>
+            </div>
+
+            <div class="campo">
+              <label for="confirmar">Confirmação de senha</label>
+              <div class="campo-senha">
+                <input type="password" id="confirmar" name="confirmar" autocomplete="new-password" placeholder="Digite a senha novamente" required>
+                <button type="button" class="ver-senha" aria-label="Mostrar senha"></button>
+              </div>
+              <span class="msg-erro"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primario btn-bloco">Finalizar cadastro</button>
+          </form>
+
+          <p class="auth-alterna">
+            Já possui uma conta? <a href="login.html" class="link" id="link-login">Acesse aqui</a>
+            <br>
+            <a href="index.html" class="voltar-inicio" data-icone="seta">Voltar para o início</a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/profissionais.js"></script>
+  <script src="js/icones.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/cadastro.js"></script>
+</body>
+</html>

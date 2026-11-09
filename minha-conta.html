@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha conta | La Vie Studio</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="conta">
+
+  <header id="site-header"></header>
+
+  <main>
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <nav class="trilha" aria-label="Você está em"><a href="index.html">Início</a><span>/</span><span>Minha conta</span></nav>
+        <h1 id="saudacao">Minha conta</h1>
+        <div class="ornamento"><span></span></div>
+        <p>Acompanhe seus horários, faça novos agendamentos e gerencie seus dados.</p>
+      </div>
+    </section>
+
+    <section class="pagina-agendamento">
+      <div class="container conta-grid">
+
+        <aside class="perfil">
+          <div class="avatar" id="avatar"></div>
+          <h2 id="perfil-nome"></h2>
+          <span class="card-categoria">Cliente La Vie</span>
+          <ul class="perfil-dados" id="perfil-dados"></ul>
+          <a href="agendamento.html" class="btn btn-primario btn-bloco" data-icone="calendario">Novo agendamento</a>
+          <button type="button" class="btn btn-contorno btn-bloco" id="btn-sair" data-icone="sair">Sair da conta</button>
+        </aside>
+
+        <section class="painel-agendamentos">
+          <div class="painel-topo">
+            <h2>Meus agendamentos</h2>
+            <a href="#" class="link" data-whatsapp="Olá! Tenho uma dúvida sobre meu agendamento no La Vie Studio.">Dúvidas? Fale no WhatsApp</a>
+          </div>
+
+          <div class="abas" role="tablist">
+            <button type="button" class="aba ativo" role="tab" aria-selected="true" data-aba="proximos">Próximos <span class="contador" id="cont-proximos">0</span></button>
+            <button type="button" class="aba" role="tab" aria-selected="false" data-aba="historico">Histórico <span class="contador" id="cont-historico">0</span></button>
+          </div>
+
+          <div id="lista-agendamentos" role="tabpanel"></div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/profissionais.js"></script>
+  <script src="js/icones.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/conta.js"></script>
+</body>
+</html>

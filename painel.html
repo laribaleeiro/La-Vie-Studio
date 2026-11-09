@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel da equipe | La Vie Studio</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="painel">
+
+  <header id="site-header"></header>
+
+  <main>
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <h1>Painel da <em>equipe</em></h1>
+        <div class="ornamento"><span></span></div>
+        <p id="saudacao-equipe">Acompanhe a agenda do salão e gerencie os atendimentos.</p>
+      </div>
+    </section>
+
+    <section class="pagina-agendamento">
+      <div class="container">
+
+        <div class="estatisticas" id="estatisticas"></div>
+
+        <!-- Abas principais do painel -->
+        <div class="secoes-painel" role="tablist" aria-label="Seções do painel">
+          <button type="button" class="secao-aba ativo" role="tab" aria-selected="true" data-secao="agenda" data-icone="calendario">Agenda</button>
+          <button type="button" class="secao-aba" role="tab" aria-selected="false" data-secao="novo" data-icone="coracao">Novo agendamento</button>
+          <button type="button" class="secao-aba" role="tab" aria-selected="false" data-secao="config" data-icone="usuario">Configurações</button>
+        </div>
+
+        <!-- ================= AGENDA ================= -->
+        <section class="painel-agendamentos" id="secao-agenda" role="tabpanel">
+          <div class="painel-topo">
+            <h2>Agenda do salão</h2>
+            <button type="button" class="btn btn-primario btn-pequeno" data-ir-secao="novo" data-icone="calendario">Agendar para cliente</button>
+          </div>
+
+          <div class="barra-filtros">
+            <div class="abas">
+              <button type="button" class="aba" data-filtro="hoje">Hoje</button>
+              <button type="button" class="aba ativo" data-filtro="proximos">Próximos</button>
+              <button type="button" class="aba" data-filtro="historico">Histórico</button>
+              <button type="button" class="aba" data-filtro="todos">Todos</button>
+            </div>
+            <div class="filtros-extra">
+              <div class="campo">
+                <label for="filtro-pagamento" class="rotulo">Pagamento</label>
+                <select id="filtro-pagamento">
+                  <option value="todos">Todos</option>
+                  <option value="pendente">Não pagos</option>
+                  <option value="pago">Pagos</option>
+                </select>
+              </div>
+              <div class="campo">
+                <label for="filtro-profissional" class="rotulo">Profissional</label>
+                <select id="filtro-profissional"></select>
+              </div>
+              <div class="campo campo-busca">
+                <label for="busca" class="rotulo">Buscar</label>
+                <input type="search" id="busca" placeholder="Cliente, procedimento ou código">
+              </div>
+            </div>
+          </div>
+
+          <div id="lista-painel"></div>
+        </section>
+
+        <!-- ================= NOVO AGENDAMENTO ================= -->
+        <section id="secao-novo" role="tabpanel" hidden>
+          <div id="nb-sucesso" class="cartao-central nb-sucesso" hidden></div>
+
+          <div class="agenda-grid" id="nb-formulario">
+            <div>
+              <!-- Cliente -->
+              <section class="etapa">
+                <h2 class="etapa-titulo"><span class="num">1</span>Dados da cliente</h2>
+                <p class="etapa-desc">Para atendimentos presenciais ou combinados pelo WhatsApp.</p>
+
+                <div class="campo">
+                  <label for="nb-cliente-existente">Cliente cadastrada no site (opcional)</label>
+                  <select id="nb-cliente-existente"></select>
+                </div>
+
+                <div class="campos-duplos">
+                  <div class="campo">
+                    <label for="nb-nome">Nome completo</label>
+                    <input type="text" id="nb-nome" placeholder="Nome da cliente">
+                    <span class="msg-erro"></span>
+                  </div>
+                  <div class="campo">
+                    <label for="nb-telefone">Telefone / WhatsApp</label>
+                    <input type="tel" id="nb-telefone" inputmode="numeric" placeholder="(11) 90000-0000">
+                    <span class="msg-erro"></span>
+                  </div>
+                </div>
+
+                <span class="rotulo">Como a cliente agendou?</span>
+                <div class="chips" role="radiogroup" aria-label="Origem do agendamento">
+                  <label class="chip"><input type="radio" name="nb-origem" value="presencial" checked><span>Presencial</span></label>
+                  <label class="chip"><input type="radio" name="nb-origem" value="whatsapp"><span>WhatsApp</span></label>
+                </div>
+              </section>
+
+              <!-- Procedimentos -->
+              <section class="etapa">
+                <h2 class="etapa-titulo"><span class="num">2</span>Procedimentos</h2>
+                <p class="etapa-desc">Selecione um ou mais procedimentos.</p>
+                <div class="lista-servicos" id="nb-servicos"></div>
+              </section>
+
+              <!-- Profissional -->
+              <section class="etapa bloqueada" id="nb-etapa-profissional">
+                <h2 class="etapa-titulo"><span class="num">3</span>Profissional</h2>
+                <p class="vazio" id="nb-profissional-vazio">Selecione um procedimento para ver as profissionais.</p>
+                <div id="nb-profissionais"></div>
+              </section>
+
+              <!-- Data -->
+              <section class="etapa bloqueada" id="nb-etapa-data">
+                <h2 class="etapa-titulo"><span class="num">4</span>Data</h2>
+                <p class="vazio" id="nb-data-vazio">Selecione um procedimento para ver o calendário.</p>
+                <div id="nb-calendario" hidden></div>
+              </section>
+
+              <!-- Horário -->
+              <section class="etapa bloqueada" id="nb-etapa-horario">
+                <h2 class="etapa-titulo"><span class="num">5</span>Horário</h2>
+                <div id="nb-horarios"><p class="vazio">Selecione uma data para ver os horários.</p></div>
+              </section>
+
+              <!-- Pagamento -->
+              <section class="etapa">
+                <h2 class="etapa-titulo"><span class="num">6</span>Pagamento</h2>
+                <div class="chips" role="radiogroup" aria-label="Situação do pagamento">
+                  <label class="chip"><input type="radio" name="nb-pago" value="nao" checked><span>Ainda não pago</span></label>
+                  <label class="chip"><input type="radio" name="nb-pago" value="sim"><span>Já pago</span></label>
+                </div>
+                <div class="campo" id="nb-forma-campo" hidden>
+                  <label for="nb-forma">Forma de pagamento</label>
+                  <select id="nb-forma"></select>
+                </div>
+                <div class="campo">
+                  <label for="nb-obs">Observações (opcional)</label>
+                  <textarea id="nb-obs" maxlength="300" placeholder="Ex.: preferência de profissional, alergias..."></textarea>
+                </div>
+              </section>
+            </div>
+
+            <aside class="resumo">
+              <h2>Resumo</h2>
+              <div class="ornamento"><span></span></div>
+              <ul class="resumo-lista">
+                <li><span>Cliente</span><span id="nb-r-cliente" class="pendente">a informar</span></li>
+                <li class="resumo-servicos"><span>Procedimentos</span><span id="nb-r-servicos" class="pendente">a escolher</span></li>
+                <li class="resumo-servicos"><span>Profissional</span><span id="nb-r-profissional" class="pendente">—</span></li>
+                <li><span>Duração total</span><span id="nb-r-duracao" class="pendente">—</span></li>
+                <li><span>Data</span><span id="nb-r-data" class="pendente">a escolher</span></li>
+                <li><span>Horário</span><span id="nb-r-horario" class="pendente">a escolher</span></li>
+                <li><span>Pagamento</span><span id="nb-r-pagamento">Não pago</span></li>
+              </ul>
+              <div class="resumo-total"><span>Total a partir de</span><strong id="nb-r-preco">—</strong></div>
+              <button type="button" class="btn btn-primario btn-bloco" id="nb-confirmar" disabled>Confirmar agendamento</button>
+              <p class="nota" id="nb-aviso">Preencha os dados da cliente, os procedimentos, a data e o horário.</p>
+            </aside>
+          </div>
+        </section>
+
+        <!-- ================= CONFIGURAÇÕES ================= -->
+        <section id="secao-config" role="tabpanel" hidden>
+          <div class="config-grid">
+            <div class="painel-agendamentos">
+              <div class="painel-topo"><h2>Acessos da equipe</h2></div>
+              <p class="etapa-desc">Funcionárias com acesso ao painel. Elas entram pela mesma página de login do site.</p>
+              <div id="lista-equipe"></div>
+            </div>
+
+            <div>
+              <form class="painel-agendamentos" id="form-equipe" novalidate>
+                <h2 class="config-titulo">Adicionar funcionária</h2>
+                <div id="alerta-equipe" class="alerta" hidden role="alert"></div>
+                <div class="campo">
+                  <label for="eq-nome">Nome</label>
+                  <input type="text" id="eq-nome" name="nome" placeholder="Nome da funcionária">
+                  <span class="msg-erro"></span>
+                </div>
+                <div class="campo">
+                  <label for="eq-email">E-mail de acesso</label>
+                  <input type="email" id="eq-email" name="email" placeholder="nome@exemplo.com">
+                  <span class="msg-erro"></span>
+                </div>
+                <div class="campos-duplos">
+                  <div class="campo">
+                    <label for="eq-senha">Senha</label>
+                    <div class="campo-senha">
+                      <input type="password" id="eq-senha" name="senha" autocomplete="new-password" placeholder="Mín. 6 caracteres">
+                      <button type="button" class="ver-senha" aria-label="Mostrar senha"></button>
+                    </div>
+                    <span class="msg-erro"></span>
+                  </div>
+                  <div class="campo">
+                    <label for="eq-confirmar">Confirmar senha</label>
+                    <div class="campo-senha">
+                      <input type="password" id="eq-confirmar" name="confirmar" autocomplete="new-password" placeholder="Repita a senha">
+                      <button type="button" class="ver-senha" aria-label="Mostrar senha"></button>
+                    </div>
+                    <span class="msg-erro"></span>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primario btn-bloco">Liberar acesso</button>
+              </form>
+
+              <form class="painel-agendamentos" id="form-minha-senha" novalidate>
+                <h2 class="config-titulo">Alterar minha senha</h2>
+                <div id="alerta-senha" class="alerta" hidden role="alert"></div>
+                <div class="campo">
+                  <label for="ms-atual">Senha atual</label>
+                  <div class="campo-senha">
+                    <input type="password" id="ms-atual" name="atual" autocomplete="current-password">
+                    <button type="button" class="ver-senha" aria-label="Mostrar senha"></button>
+                  </div>
+                  <span class="msg-erro"></span>
+                </div>
+                <div class="campos-duplos">
+                  <div class="campo">
+                    <label for="ms-nova">Nova senha</label>
+                    <div class="campo-senha">
+                      <input type="password" id="ms-nova" name="nova" autocomplete="new-password">
+                      <button type="button" class="ver-senha" aria-label="Mostrar senha"></button>
+                    </div>
+                    <span class="msg-erro"></span>
+                  </div>
+                  <div class="campo">
+                    <label for="ms-confirmar">Confirmar</label>
+                    <div class="campo-senha">
+                      <input type="password" id="ms-confirmar" name="confirmar" autocomplete="new-password">
+                      <button type="button" class="ver-senha" aria-label="Mostrar senha"></button>
+                    </div>
+                    <span class="msg-erro"></span>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-contorno btn-bloco">Salvar nova senha</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Janela para registrar pagamento -->
+  <dialog id="dialogo-pagamento" class="dialogo">
+    <form method="dialog">
+      <h3>Registrar pagamento</h3>
+      <p id="pg-descricao"></p>
+      <div class="campo">
+        <label for="pg-forma">Forma de pagamento</label>
+        <select id="pg-forma"></select>
+      </div>
+      <div class="dialogo-acoes">
+        <button value="cancelar" class="btn btn-contorno btn-pequeno">Voltar</button>
+        <button value="confirmar" class="btn btn-primario btn-pequeno">Confirmar pagamento</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/profissionais.js"></script>
+  <script src="js/icones.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/calendario.js"></script>
+  <script src="js/painel.js"></script>
+</body>
+</html>

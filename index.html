@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Vie Studio | Salão de Beleza</title>
+  <meta name="description" content="La Vie Studio — salão de beleza com cabelo, unhas, sobrancelhas, cílios e maquiagem. Agende seu horário online.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+  <header id="site-header"></header>
+
+  <main>
+    <!-- ========== DESTAQUE ========== -->
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-conteudo revelar">
+          <h1 class="hero-logo logo" aria-label="La Vie Studio">
+            <span class="logo-lavie">La Vie</span>
+            <span class="logo-studio">Studio</span>
+          </h1>
+          <p class="hero-frase">Beleza que celebra a sua essência.</p>
+          <p class="hero-texto">
+            Um refúgio delicado para você desacelerar e se cuidar. No La Vie Studio,
+            cada detalhe é pensado para realçar a sua beleza natural com técnica,
+            sofisticação e muito acolhimento.
+          </p>
+          <div class="hero-acoes">
+            <a href="agendamento.html" class="btn btn-primario" data-icone="calendario">Agendar horário</a>
+            <a href="#" class="btn btn-dourado" data-icone="whatsapp" data-whatsapp="Olá! Gostaria de saber mais sobre os procedimentos do La Vie Studio.">Falar no WhatsApp</a>
+          </div>
+          <ul class="hero-selos">
+            <li data-icone="estrela">Profissionais especializadas</li>
+            <li data-icone="relogio">Atendimento com hora marcada</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual revelar">
+          <figure class="hero-foto">
+            <img src="img/salao.jpg" alt="Ambiente do La Vie Studio: espelhos em arco com luz dourada, poltronas rosé e a recepção com o logotipo do salão" width="1600" height="900" fetchpriority="high">
+          </figure>
+          <div class="selo-flutuante selo-1" data-icone="coracao"><span><strong>Cuidado único</strong>feito para você</span></div>
+          <div class="selo-flutuante selo-2" data-icone="diamante"><span><strong>Experiência</strong>exclusiva</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SOBRE ========== -->
+    <section class="secao" id="sobre">
+      <div class="container sobre-grid">
+        <div class="sobre-texto revelar">
+          <span class="sobretitulo">Sobre o salão</span>
+          <h2 class="titulo-secao">Um espaço para você <em>florescer</em></h2>
+          <div class="ornamento esquerda"><span></span></div>
+          <p>
+            O La Vie Studio nasceu do desejo de criar um lugar onde beleza e bem-estar caminham juntos.
+            Aqui, cada cliente é recebida com calma, escuta atenta e um atendimento pensado para o seu
+            estilo, a sua rotina e a sua essência.
+          </p>
+          <p>
+            Reunimos cabelo, unhas, olhar e maquiagem em um só lugar, com técnicas atualizadas,
+            produtos de qualidade e um ambiente acolhedor, delicado e feminino.
+          </p>
+          <p class="citacao">“Cuidar de si é um gesto de amor — e cada visita deve ser um momento só seu.”</p>
+          <a href="#procedimentos" class="btn btn-contorno" data-icone="seta">Conheça os procedimentos</a>
+        </div>
+
+        <div class="diferenciais">
+          <article class="diferencial revelar">
+            <div class="diferencial-icone" data-icone="coracao"></div>
+            <h3>Atendimento personalizado</h3>
+            <p>Escutamos você antes de começar, para um resultado que combine com quem você é.</p>
+          </article>
+          <article class="diferencial revelar">
+            <div class="diferencial-icone" data-icone="diamante"></div>
+            <h3>Produtos de qualidade</h3>
+            <p>Trabalhamos com linhas profissionais que cuidam enquanto embelezam.</p>
+          </article>
+          <article class="diferencial revelar">
+            <div class="diferencial-icone" data-icone="flor"></div>
+            <h3>Ambiente acolhedor</h3>
+            <p>Um espaço delicado e tranquilo, pensado para você relaxar do início ao fim.</p>
+          </article>
+          <article class="diferencial revelar">
+            <div class="diferencial-icone" data-icone="relogio"></div>
+            <h3>Pontualidade e cuidado</h3>
+            <p>Hora marcada, materiais higienizados e respeito ao seu tempo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROCEDIMENTOS ========== -->
+    <section class="secao secao-procedimentos" id="procedimentos">
+      <div class="container">
+        <div class="centro revelar">
+          <span class="sobretitulo">Procedimentos</span>
+          <h2 class="titulo-secao">Cuidados pensados <em>para você</em></h2>
+          <div class="ornamento"><span></span></div>
+          <p class="texto-secao">
+            Do cabelo ao olhar, conheça os serviços do La Vie Studio. Os valores são a partir de
+            e podem variar conforme comprimento, volume e técnica escolhida.
+          </p>
+        </div>
+
+        <div class="filtros" id="filtros" role="group" aria-label="Filtrar procedimentos por categoria"></div>
+        <div class="grid-servicos" id="grid-servicos"></div>
+      </div>
+    </section>
+
+    <!-- ========== COMO AGENDAR ========== -->
+    <section class="secao" id="como-agendar">
+      <div class="container centro">
+        <div class="revelar">
+          <span class="sobretitulo">Como agendar</span>
+          <h2 class="titulo-secao">Seu horário em <em>três passos</em></h2>
+          <div class="ornamento"><span></span></div>
+        </div>
+        <ol class="passos-home">
+          <li class="passo-home revelar">
+            <h3>Crie sua conta</h3>
+            <p>Um cadastro rápido com nome, e-mail e telefone. Se já é cliente, é só entrar.</p>
+          </li>
+          <li class="passo-home revelar">
+            <h3>Escolha o cuidado</h3>
+            <p>Selecione o procedimento, a data e o horário que combinam com a sua agenda.</p>
+          </li>
+          <li class="passo-home revelar">
+            <h3>Venha se cuidar</h3>
+            <p>Receba a confirmação na hora e acompanhe tudo pela área “Minha conta”.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========== CONVITE ========== -->
+    <section class="secao" id="convite" style="padding-top: 0;">
+      <div class="container">
+        <div class="convite revelar">
+          <span class="sobretitulo">Será um prazer receber você</span>
+          <h2>Venha conhecer o <em>La Vie Studio</em></h2>
+          <p>
+            Reserve um momento só seu. Agende online em poucos cliques ou fale com a gente pelo
+            WhatsApp para tirar dúvidas e receber uma indicação personalizada.
+          </p>
+          <div class="hero-acoes">
+            <a href="agendamento.html" class="btn btn-branco" data-icone="calendario">Agendar agora</a>
+            <a href="#" class="btn btn-claro" data-icone="whatsapp" data-whatsapp="Olá! Gostaria de agendar um horário no La Vie Studio.">WhatsApp (11) 98066-0805</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/profissionais.js"></script>
+  <script src="js/icones.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

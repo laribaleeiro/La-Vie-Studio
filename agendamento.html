@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendamento | La Vie Studio</title>
+  <meta name="description" content="Agende seu horário no La Vie Studio: escolha o procedimento, a data e o horário.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="agendamento">
+
+  <header id="site-header"></header>
+
+  <main>
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <nav class="trilha" aria-label="Você está em"><a href="index.html">Início</a><span>/</span><span>Agendamento</span></nav>
+        <h1>Agende seu <em>momento</em></h1>
+        <div class="ornamento"><span></span></div>
+        <p>Escolha o cuidado, a data e o horário ideais para você. A confirmação é imediata.</p>
+      </div>
+    </section>
+
+    <section class="pagina-agendamento">
+      <div class="container">
+
+        <!-- Visitante sem login -->
+        <div id="bloqueio" class="cartao-central" hidden>
+          <div class="icone-circulo" data-icone="usuario"></div>
+          <h2>Entre para agendar</h2>
+          <p>Para reservar seu horário, acesse sua conta. Ainda não é cliente? O cadastro leva menos de um minuto.</p>
+          <div class="hero-acoes">
+            <a href="login.html" id="btn-ir-login" class="btn btn-primario">Entrar na minha conta</a>
+            <a href="cadastro.html" id="btn-ir-cadastro" class="btn btn-dourado">Criar conta</a>
+          </div>
+          <p style="margin-top:1.6rem;margin-bottom:0;font-size:.9rem;">
+            <a href="index.html#procedimentos" class="link">Ver procedimentos</a> &nbsp;·&nbsp;
+            <a href="#" class="link" data-whatsapp="Olá! Gostaria de agendar um horário no La Vie Studio.">Agendar pelo WhatsApp</a>
+          </p>
+        </div>
+
+        <!-- Fluxo de agendamento -->
+        <div id="fluxo" hidden>
+          <ol class="stepper" id="stepper">
+            <li data-passo="1"><span class="num">1</span><span class="rotulo-passo">Procedimento</span></li>
+            <li data-passo="2"><span class="num">2</span><span class="rotulo-passo">Profissional</span></li>
+            <li data-passo="3"><span class="num">3</span><span class="rotulo-passo">Data</span></li>
+            <li data-passo="4"><span class="num">4</span><span class="rotulo-passo">Horário</span></li>
+            <li data-passo="5"><span class="num">5</span><span class="rotulo-passo">Confirmação</span></li>
+          </ol>
+
+          <div class="agenda-grid">
+            <div>
+              <!-- 1. Procedimento -->
+              <section class="etapa" id="etapa-servico">
+                <h2 class="etapa-titulo"><span class="num">1</span>Escolha os procedimentos</h2>
+                <p class="etapa-desc">Você pode selecionar mais de um cuidado — eles serão feitos em sequência, no mesmo horário.</p>
+                <div class="lista-servicos" id="lista-servicos"></div>
+                <div id="info-servico"></div>
+              </section>
+
+              <!-- 2. Profissional -->
+              <section class="etapa bloqueada" id="etapa-profissional">
+                <h2 class="etapa-titulo"><span class="num">2</span>Escolha a profissional</h2>
+                <p class="etapa-desc">Prefere ser atendida por alguém específico? Escolha para cada tipo de procedimento — ou deixe “Sem preferência”.</p>
+                <p class="vazio" id="profissional-vazio">Selecione um procedimento para ver as profissionais.</p>
+                <div id="lista-profissionais"></div>
+              </section>
+
+              <!-- 3. Data -->
+              <section class="etapa bloqueada" id="etapa-data">
+                <h2 class="etapa-titulo"><span class="num">3</span>Escolha a data</h2>
+                <p class="etapa-desc">Navegue pelos meses e escolha o melhor dia. Atendemos de terça a sábado das 7h às 20h e aos domingos das 7h às 15h.</p>
+                <p class="vazio" id="data-vazio">Selecione um procedimento para ver o calendário.</p>
+                <div id="calendario" hidden></div>
+              </section>
+
+              <!-- 4. Horário -->
+              <section class="etapa bloqueada" id="etapa-horario">
+                <h2 class="etapa-titulo"><span class="num">4</span>Escolha o horário</h2>
+                <p class="etapa-desc" id="desc-horario">Horários livres para a data escolhida.</p>
+                <div id="lista-horarios"><p class="vazio">Selecione uma data para ver os horários.</p></div>
+              </section>
+            </div>
+
+            <!-- 5. Resumo e confirmação -->
+            <aside class="resumo" aria-labelledby="titulo-resumo">
+              <h2 id="titulo-resumo">Seu agendamento</h2>
+              <div class="ornamento"><span></span></div>
+
+              <div class="resumo-cliente" id="resumo-cliente"></div>
+
+              <ul class="resumo-lista">
+                <li class="resumo-servicos"><span>Procedimentos</span><span id="r-servico" class="pendente">a escolher</span></li>
+                <li class="resumo-servicos"><span>Profissional</span><span id="r-profissional" class="pendente">—</span></li>
+                <li><span>Duração total</span><span id="r-duracao" class="pendente">—</span></li>
+                <li><span>Data</span><span id="r-data" class="pendente">a escolher</span></li>
+                <li><span>Horário</span><span id="r-horario" class="pendente">a escolher</span></li>
+              </ul>
+              <div class="resumo-total"><span>Total a partir de</span><strong id="r-preco">—</strong></div>
+
+              <div class="campo">
+                <label for="observacao">Observações (opcional)</label>
+                <textarea id="observacao" maxlength="300" placeholder="Ex.: alergias, referência de cor, preferência de profissional..."></textarea>
+              </div>
+
+              <button type="button" class="btn btn-primario btn-bloco" id="btn-confirmar" disabled>Confirmar agendamento</button>
+              <p class="nota">O pagamento é feito no salão, no dia do atendimento.</p>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Confirmação final -->
+        <div id="confirmacao" class="cartao-central" hidden tabindex="-1">
+          <div class="icone-circulo sucesso" data-icone="check"></div>
+          <span class="sobretitulo">Tudo certo!</span>
+          <h2>Agendamento confirmado</h2>
+          <p id="texto-confirmacao"></p>
+          <ul class="detalhes-confirmacao" id="detalhes-confirmacao"></ul>
+          <div class="hero-acoes">
+            <a href="minha-conta.html" class="btn btn-primario">Ver meus agendamentos</a>
+            <a href="#" class="btn btn-dourado" id="btn-whats-confirmacao" target="_blank" rel="noopener" data-icone="whatsapp">Avisar pelo WhatsApp</a>
+          </div>
+          <p style="margin-top:1.4rem;margin-bottom:0;font-size:.9rem;">
+            <a href="agendamento.html" class="link">Fazer outro agendamento</a> &nbsp;·&nbsp;
+            <a href="index.html" class="link">Voltar ao início</a>
+          </p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/profissionais.js"></script>
+  <script src="js/icones.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/calendario.js"></script>
+  <script src="js/agendamento.js"></script>
+</body>
+</html>
